@@ -47,14 +47,14 @@ export default function buildDraggableArea({isInAnotherArea = () => {}, passAddF
       passAddFunc(this.container, this.addTag.bind(this));
       this.props.getAddTagFunc && this.props.getAddTagFunc(this.addTag.bind(this));
     }
-  
-    UNSAFE_componentWillReceiveProps({tags}) {
+
+    componentWillReceiveProps({tags}) {
       if (!tags) return;
       if ((
-          tags.length !== this.props.tags.length ||
-          tags.length !== this.state.tags.size ||
-          tags.some((tag, i) => !this.state.tags.get(i) || tag.id !== this.state.tags.get(i).id)
-        ) && !this.forbitSetTagsState
+        tags.length !== this.props.tags.length ||
+        tags.length !== this.state.tags.size ||
+        tags.some((tag, i) => !this.state.tags.get(i) || tag.id !== this.state.tags.get(i).id)
+      ) && !this.forbitSetTagsState
       ) {
         this.setTags(List(tags));
       }
